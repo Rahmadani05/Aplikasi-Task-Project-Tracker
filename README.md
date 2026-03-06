@@ -6,12 +6,20 @@
  Instllasi Frontend Vue 3 + TypeScript
  1. npm create vue@latest frontend
 
+ Installasi Dependensi Frontend
+ 1. npm install
+
 Cara jalankan websitenya yaitu dengan cara menjalakan semua server baik backend ataupun frontend
 - Backend : php artisan serve
 - Frontend : npm run dev
 (Jalankan website di server lokal frontend (http://localhost:5173/))
 
 - Dokumentasi API sudah ada di folder bernama foto tes postman, untuk command postmannya ada di folder backend/TaskTracker.postman_collection.json
+
+Instal dependensi Backend Laravel
+1. composer install
+2. php artisan key:generate
+3. php artisan migrate:fresh --seed (untuk mengexport semua migrasi dan seeder di backend)
 
  Setup ENV Backend Laravel
  1. Ubah ENV seperti ini : 
