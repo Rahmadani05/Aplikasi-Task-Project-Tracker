@@ -11,6 +11,8 @@ Cara jalankan websitenya yaitu dengan cara menjalakan semua server baik backend 
 - Frontend : npm run dev
 (Jalankan website di server lokal frontend (http://localhost:5173/))
 
+- Dokumentasi API sudah ada di folder bernama foto tes postman, untuk command postmannya ada di folder backend/TaskTracker.postman_collection.json
+
  Setup ENV Backend Laravel
  1. Ubah ENV seperti ini : 
 DB_CONNECTION=pgsql
