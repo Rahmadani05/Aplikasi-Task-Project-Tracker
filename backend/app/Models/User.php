@@ -6,6 +6,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class User extends Authenticatable
 {
@@ -21,6 +22,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'is_admin',
     ];
 
     /**
@@ -44,5 +46,23 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    //relasi : user membuat banyak Project
+    public function projects(): HasMany
+    {
+        return $this->hasMany(Project::class, 'created_by');
+    }
+
+    //relasi : user membuat banyak Task
+    public function createdTasks(): HasMany
+    {
+        return $this->hasMany(Task::class, 'created_by');
+    }   
+
+    //relasi : user menghapus banyak Task
+    public function deletedTasks(): HasMany
+    {
+        return $this->hasMany(Task::class, 'deleted_by');
     }
 }
