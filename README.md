@@ -6,6 +6,11 @@
  Instllasi Frontend Vue 3 + TypeScript
  1. npm create vue@latest frontend
 
+Cara jalankan websitenya yaitu dengan cara menjalakan semua server baik backend ataupun frontend
+- Backend : php artisan serve
+- Frontend : npm run dev
+(Jalankan website di server lokal frontend (http://localhost:5173/))
+
  Setup ENV Backend Laravel
  1. Ubah ENV seperti ini : 
 DB_CONNECTION=pgsql
@@ -26,5 +31,11 @@ php artisan make:model (sesuaikan nama model kalian) -m
 
 - command make seeder
 php artisan make:seeder (sesuaikan nama seeder kalian)
+
+- Untuk Unit Test Backend bisa mengetikkan command berikut di terminal backend
+php artisan test
+
+-Untuk Unit Test Frontend bisa mengetikkan command berikut di terminal frontend
+npm run test
 
 - Mohon maaf tidak sempat mendeploy karena keterbatasan waktu
