@@ -1,0 +1,170 @@
+{
+	"info": {
+		"name": "TaskTracker API Documentation",
+		"description": "Dokumentasi API lengkap untuk aplikasi TaskTracker (Energeek Fullstack Test). Mencakup Auth, Dashboard, Projects, dan Tasks.",
+        "link share postman" : "https://rahmadanisuryanto05-15310.postman.co/workspace/Rahmadani-Suryanto-Dwi-Putra's-~e49a76fe-9a4b-4c19-8701-23e4a0510498/request/48009503-39bb9365-e708-4f85-8503-41a49c83e8ae?action=share&creator=48009503&ctx=documentation"
+	},
+	"item": [
+		{
+			"name": "1. Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [
+							{ "key": "Accept", "value": "application/json" }
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"admin@energeek.id\",\n    \"password\": \"password\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/login",
+							"host": [ "{{base_url}}" ],
+							"path": [ "login" ]
+						}
+					}
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{token}}", "type": "string" } ] },
+						"method": "POST",
+						"header": [ { "key": "Accept", "value": "application/json" } ],
+						"url": {
+							"raw": "{{base_url}}/logout",
+							"host": [ "{{base_url}}" ],
+							"path": [ "logout" ]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "2. Dashboard",
+			"item": [
+				{
+					"name": "Get Dashboard Data",
+					"request": {
+						"auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{token}}", "type": "string" } ] },
+						"method": "GET",
+						"header": [ { "key": "Accept", "value": "application/json" } ],
+						"url": {
+							"raw": "{{base_url}}/dashboard",
+							"host": [ "{{base_url}}" ],
+							"path": [ "dashboard" ]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "3. Projects",
+			"item": [
+				{
+					"name": "Get All Projects",
+					"request": {
+						"auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{token}}", "type": "string" } ] },
+						"method": "GET",
+						"header": [ { "key": "Accept", "value": "application/json" } ],
+						"url": {
+							"raw": "{{base_url}}/projects?search=web&status=active",
+							"host": [ "{{base_url}}" ],
+							"path": [ "projects" ],
+							"query": [
+								{ "key": "search", "value": "web", "description": "Opsional: Filter nama project" },
+								{ "key": "status", "value": "active", "description": "Opsional: Filter status (active/archived)" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Get Project Detail (Kanban)",
+					"request": {
+						"auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{token}}", "type": "string" } ] },
+						"method": "GET",
+						"header": [ { "key": "Accept", "value": "application/json" } ],
+						"url": {
+							"raw": "{{base_url}}/projects/1",
+							"host": [ "{{base_url}}" ],
+							"path": [ "projects", "1" ]
+						}
+					}
+				},
+				{
+					"name": "Create Project",
+					"request": {
+						"auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{token}}", "type": "string" } ] },
+						"method": "POST",
+						"header": [ { "key": "Accept", "value": "application/json" } ],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Aplikasi Mobile V2\",\n    \"description\": \"Pengembangan fitur baru untuk aplikasi mobile.\",\n    \"status\": \"active\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/projects",
+							"host": [ "{{base_url}}" ],
+							"path": [ "projects" ]
+						}
+					}
+				}
+			]
+		},
+		{
+			"name": "4. Tasks",
+			"item": [
+				{
+					"name": "Get All Tasks",
+					"request": {
+						"auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{token}}", "type": "string" } ] },
+						"method": "GET",
+						"header": [ { "key": "Accept", "value": "application/json" } ],
+						"url": {
+							"raw": "{{base_url}}/tasks?project_id=1&category_id=1",
+							"host": [ "{{base_url}}" ],
+							"path": [ "tasks" ],
+							"query": [
+								{ "key": "project_id", "value": "1", "description": "Opsional: Filter berdasarkan Project" },
+								{ "key": "category_id", "value": "1", "description": "Opsional: Filter berdasarkan Kategori" }
+							]
+						}
+					}
+				},
+				{
+					"name": "Create Task",
+					"request": {
+						"auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{token}}", "type": "string" } ] },
+						"method": "POST",
+						"header": [ { "key": "Accept", "value": "application/json" } ],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Integrasi Payment Gateway API\",\n    \"description\": \"Menyambungkan endpoint Midtrans ke aplikasi backend.\",\n    \"project_id\": 1,\n    \"category_id\": 1,\n    \"due_date\": \"2026-03-15\"\n}",
+							"options": { "raw": { "language": "json" } }
+						},
+						"url": {
+							"raw": "{{base_url}}/tasks",
+							"host": [ "{{base_url}}" ],
+							"path": [ "tasks" ]
+						}
+					}
+				},
+				{
+					"name": "Delete Task (Soft Delete)",
+					"request": {
+						"auth": { "type": "bearer", "bearer": [ { "key": "token", "value": "{{token}}", "type": "string" } ] },
+						"method": "DELETE",
+						"header": [ { "key": "Accept", "value": "application/json" } ],
+						"url": {
+							"raw": "{{base_url}}/tasks/1",
+							"host": [ "{{base_url}}" ],
+							"path": [ "tasks", "1" ]
+						}
+					}
+				}
+			]
+		}
+	]
+}
